@@ -1,8 +1,8 @@
 name: Telechargement des logs et dégra
 on:
   schedule: # Planification du workflow selon un planning.
-    - cron: '0 0 * * *' # Exec du script à minuit.
-  workflow_dispatch: # Permet de déclencher le workflow manuellement
+    - cron: '0 0 * * *' # Exécute le script à minuit.
+  workflow_dispatch: # Permet de déclencher le workflow manuellement.
 
 jobs:
   download-data:
@@ -10,10 +10,10 @@ jobs:
 
     steps:
       - name: Checkout repository # Nom de l'étape
-        uses: actions/checkout@v2 # action pour récupérer le dépôt GitHub
+        uses: actions/checkout@v3 # Mettre à jour vers la version v3
 
       - name: Set up Python
-        uses: actions/setup-python@v2 # Configuration de Python
+        uses: actions/setup-python@v4 # Mettre à jour vers la version v4
         with:
           python-version: 3.x
 
