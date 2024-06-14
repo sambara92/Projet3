@@ -24,7 +24,7 @@ jobs:
 
       - name: Run download script
         run: |
-          python scripts/download_data.py
+          python Script2GithubVers.py
 
       - name: Commit and push data updates
         run: |
