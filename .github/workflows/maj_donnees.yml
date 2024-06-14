@@ -5,7 +5,7 @@ on:
   workflow_dispatch: # Permet de déclencher le workflow manuellement.
 
 jobs:
-  download-data:
+  download-dataV2:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,9 +22,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas requests
 
-      - name: Run download script
+      - name: Lancement du Script
         run: |
-          python Script2GithubVers.py # Chemin correct du script
+          python Script2GithubVers.py # Chemin script
 
       - name: Commit and push data updates
         run: |
