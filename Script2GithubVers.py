@@ -1,5 +1,6 @@
 import os
-from os import listdir, join
+from os.path import join, isfile
+from os import listdir
 from datetime import datetime
 import requests
 import pandas as pd
