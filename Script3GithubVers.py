@@ -62,8 +62,6 @@ def download_files():
                 else:
                     print(f"Téléchargement impossible de {file_degrad}. Code statut {response_degrad.status_code}")
 
-
-
 # Def des csv
 aeronefs_file = 'aeronefs_2024-06-02.csv'
 composants_file = 'composants_2024-06-02.csv'
@@ -84,14 +82,16 @@ def update_files():
         df_log = pd.read_csv(join(log_path, log_file))
         for index, row in df_log.iterrows():
             # Exemple de mise à jour pour aeronefs
-            df_aeronefs.loc[df_aeronefs['ref_aero'] == row['aero_linked'], 'last_maint'] = row['jour_vol']
-            df_aeronefs.loc[df_aeronefs['ref_aero'] == row['aero_linked'], 'en_maintenance'] = row['etat_voyant']
+            if 'aero_linked' in df_log.columns and 'jour_vol' in df_log.columns and 'etat_voyant' in df_log.columns:
+                df_aeronefs.loc[df_aeronefs['ref_aero'] == row['aero_linked'], 'last_maint'] = row['jour_vol']
+                df_aeronefs.loc[df_aeronefs['ref_aero'] == row['aero_linked'], 'en_maintenance'] = row['etat_voyant']
 
     for degra_file in listfile_degra:
         df_degra = pd.read_csv(join(degra_path, degra_file))
         for index, row in df_degra.iterrows():
             # Exemple de mise à jour pour composants
-            df_composants.loc[df_composants['ref_compo'] == row['compo_concerned'], 'taux_usure_actuel'] = row['usure_cumulee']
+            if 'compo_concerned' in df_degra.columns and 'usure_nouvelle' in df_degra.columns:
+                df_composants.loc[df_composants['ref_compo'] == row['compo_concerned'], 'taux_usure_actuel'] = row['usure_nouvelle']
 
     # Sauvegarder des fichiers après maj
     df_aeronefs.to_csv(aeronefs_file, index=False)
@@ -99,5 +99,8 @@ def update_files():
     print("Mise à jour des fichiers aeronefs et composants terminée.")
 
 # Exec des fonctions
+download_files()
+update_files()
+
 download_files()
 update_files()
