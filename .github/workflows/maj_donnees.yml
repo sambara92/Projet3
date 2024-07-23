@@ -1,4 +1,4 @@
-name: Telechargement des logs et dégra
+name: Telechargement des logs et dégra & MAJ aeronefs et compos
 on:
   schedule: # Planification du workflow selon un planning.
     - cron: '0 0 * * *' # Exécute le script à minuit.
