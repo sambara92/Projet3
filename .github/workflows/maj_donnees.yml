@@ -28,7 +28,7 @@ jobs:
 
       - name: Run update script
         run: |
-          python Script3GithubVers # Chemin script pour aeronefs & compos
+          python Script3GithubVers.py # Chemin script pour aeronefs & compos
 
       - name: Commit and push data updates
         run: |
