@@ -101,6 +101,3 @@ def update_files():
 # Exec des fonctions
 download_files()
 update_files()
-
-download_files()
-update_files()
