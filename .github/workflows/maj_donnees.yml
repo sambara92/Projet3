@@ -22,14 +22,20 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas requests
 
-      - name: Lancement du Script
+      - name: Run download script
         run: |
-          python Script2GithubVers.py # Chemin script
+          python Script2GithubVers.py # Chemin script degra et log vols
+
+      - name: Run update script
+        run: |
+          python Script3GithubVers # Chemin script pour aeronefs & compos
 
       - name: Commit and push data updates
         run: |
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'actions@github.com'
           git add data/
+          git add aeronefs_2024-06-02.csv
+          git add composants_2024-06-02.csv
           git commit -m 'Mise à jour quotidienne des données'
           git push
